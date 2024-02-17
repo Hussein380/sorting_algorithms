@@ -21,7 +21,7 @@ void bubble_sort(int *array, size_t size)
 	for (i = 0; i < size - 1; i++)
 	{
 		/*inner loop to compare the adjacent elements and swap*/
-		for (j =0; j < size - i - 1; j++)
+		for (j = 0; j < size - i - 1; j++)
 		{
 			/*swap if the current is greater*/
 			if (array[j] > array[j + 1])
