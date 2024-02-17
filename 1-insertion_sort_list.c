@@ -35,8 +35,8 @@ void insertion_sort_list(listint_t **list)
 			current->next = *list;
 			(*list)->prev = current;
 			*list = current;
-			print_list((const listint_t*)*list);
 		}
+		print_list(*list);
 		else
 		{
 			current->prev->next = next;
@@ -48,7 +48,7 @@ void insertion_sort_list(listint_t **list)
 				insertion_point->next->prev = current;
 			insertion_point->next = current;
 		}
+		print_list(*list);
 		current = next;
-		print_list((const listint_t*)*list);
 	}
 }
