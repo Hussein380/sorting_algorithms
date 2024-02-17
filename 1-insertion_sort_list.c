@@ -18,9 +18,7 @@ void insertion_sort_list(listint_t **list)
 	current = (*list)->next;
 	while (current != NULL)
 	{
-		/*save the next node before moving the current*/
 		next = current->next;
-		/*start looking for insertion point from the end oflist*/
 		insertion_point = current->prev;
 		while (insertion_point != NULL && insertion_point->n > current->n)
 		{
@@ -35,7 +33,7 @@ void insertion_sort_list(listint_t **list)
 			current->next = *list;
 			(*list)->prev = current;
 			*list = current;
-			print_list((const listint_t*)*list);
+			print_list(*list);
 		}
 		else
 		{
@@ -49,6 +47,6 @@ void insertion_sort_list(listint_t **list)
 			insertion_point->next = current;
 		}
 		current = next;
-		print_list((const listint_t*)*list);
+		print_list(*list);
 	}
 }
