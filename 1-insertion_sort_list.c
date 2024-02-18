@@ -11,10 +11,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *current, *insertion_point, *next;
 
-	/*Nothing to sort if the list is empty or has only one node*/
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
-	/*start from the second node*/
 	current = (*list)->next;
 	while (current != NULL)
 	{
@@ -46,7 +44,7 @@ void insertion_sort_list(listint_t **list)
 				insertion_point->next->prev = current;
 			insertion_point->next = current;
 		}
-		current = next;
 		print_list(*list);
+		current = next;
 	}
 }
