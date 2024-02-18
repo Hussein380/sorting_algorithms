@@ -43,8 +43,8 @@ void insertion_sort_list(listint_t **list)
 			if (insertion_point->next != NULL)
 				insertion_point->next->prev = current;
 			insertion_point->next = current;
+			print_list(*list);
 		}
-		print_list(*list);
 		current = next;
 	}
 }
