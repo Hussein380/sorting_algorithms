@@ -1,6 +1,17 @@
 #ifndef SORT_H
 #define SORT_H
 #include <stddef.h>
+/**
+ * enum bool - Enumeration of Boolean values
+ * @false: Equals 0
+ * @true: equals 1
+ */
+
+typedef enum bool
+{
+	false = 0,
+	true
+} bool;
 
 /**
  * struct listint_s - Doubly linked list node
