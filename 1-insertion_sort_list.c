@@ -2,6 +2,27 @@
 #include <stdlib.h>
 
 /**
+ * swap_nodes -swap two nodes in a listint_t doubly linked list
+ * @head: A pointer to the head of the doubly linked list
+ * @node1: A pointet to first node swap
+ * @node2: The second node to swap
+ */
+void swap_nodes(listint_t **head, listint_t **node1, listint_t *node2)
+{
+	(*node1)->next = node2->next;
+	if (node2->next != NULL)
+		node2->next->prev = *node1;
+	node2->prev = (*node1)->prev;
+	node2->next = *node1;
+	if ((*node1)->prev != NULL)
+		(*node1)->prev->next = node2;
+	else
+		*head = node2;
+	(*node1)->prev = node2;
+	*node1 = node2->prev;
+}
+
+/**
  * insertion_sort_list - Function that sorts doubly linked list of integers
  * @list: list to be dorted into doubly linked list
  * Return: nothing
@@ -9,42 +30,19 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current, *insertion_point, *next;
+	listint_t *current, *insertion_point, *tmp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
-	current = (*list)->next;
-	while (current != NULL)
+	for (current = (*list)->next; current != NULL; current = tmp)
 	{
-		next = current->next;
+		tmp = current->next;
 		insertion_point = current->prev;
-		while (insertion_point != NULL && insertion_point->n > current->n)
+
+		while (insertion_point != NULL && current->n < insertion_point->n)
 		{
-			insertion_point = insertion_point->prev;
+			swap_nodes(list, &insertion_point, current);
+			print_list((const listint_t *)*list);
 		}
-		if (insertion_point == NULL)
-		{
-			current->prev->next = next;
-			if (next != NULL)
-				next->prev = current->prev;
-			current->prev = NULL;
-			current->next = *list;
-			(*list)->prev = current;
-			*list = current;
-			print_list(*list);
-		}
-		else
-		{
-			current->prev->next = next;
-			if (next != NULL)
-				next->prev = current->prev;
-			current->prev = insertion_point;
-			current->next = insertion_point->next;
-			if (insertion_point->next != NULL)
-				insertion_point->next->prev = current;
-			insertion_point->next = current;
-			print_list(*list);
-		}
-		current = next;
 	}
 }
